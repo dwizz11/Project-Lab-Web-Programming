@@ -15,7 +15,7 @@
           {{-- Products --}}
           @foreach ($category_items as $product_item)
           <div class="card" style="width: 18rem;position: relative;">
-            <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img1.jpg') }}" width="100%" height="160rem" style="object-fit: cover">
+            <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="160rem" style="object-fit: cover">
             <div class="card-body">
               <p style="margin: 0">{{ $product_item->productname }}</p>
               <p style="font-weight: 700; margin: 0">Rp. {{ $product_item->price }},-</p>

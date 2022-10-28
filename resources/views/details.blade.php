@@ -9,7 +9,7 @@
       <div class="container m-auto bg-white d-flex position-absolute top-50 start-50 translate-middle w-50" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important">
 
         <div class="container w-50">
-          <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img1.jpg') }}">
+          <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}">
         </div>
         
         <div class="container">

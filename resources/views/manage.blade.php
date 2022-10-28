@@ -20,7 +20,7 @@
         <div class="container bg-white d-flex w-50 mt-3 mb-2" style="border-radius: 20px; box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; margin-left: 0 !important; margin-right: 0 !important; position: relative;">
     
             <div class="container w-50">
-              <img src="{{ asset('storage/' . $products->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img1.jpg') }}" width="100%" height="150rem" style="object-fit: cover">
+              <img src="{{ asset('storage/' . $products->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="150rem" style="object-fit: cover">
             </div>
             
             <div class="container d-flex flex-column justify-content-center">
