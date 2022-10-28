@@ -10,7 +10,7 @@
       @foreach ($cartitems as $item)
       <div class="container mb-5 bg-white d-flex w-100 align-items-center" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; position: relative;">
 
-        <div class="container w-50 rounded-3 overflow-hidden">
+        <div class="container w-50 rounded-3 overflow-hidden" style="height: 10em;">
           <img src="{{ asset('storage/' . $item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}">
         </div>
         
