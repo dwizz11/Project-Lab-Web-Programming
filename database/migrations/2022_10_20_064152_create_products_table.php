@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('productslug')->unique();
             $table->integer('price');
             $table->foreignId('category_id')->constrained('categories');
-            $table->string('productphoto')->default('img/img1.jpg');
+            $table->string('productphoto')->default('img/img2.jpg');
             $table->timestamps();
         });
     }
