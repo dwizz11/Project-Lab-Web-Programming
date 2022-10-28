@@ -43,7 +43,7 @@ Route::get('/manage/search', [ajaxcontroller::class, 'managesearchproduct'])->mi
 
 
 
-Route::get('/login', [Logincontroller::class , 'index'])->middleware('guest');
+Route::get('/login', [Logincontroller::class , 'index'])->name('login')->middleware('guest');
 Route::post('/login', [Logincontroller::class , 'authenticate']);
 Route::post('/logout', [Logoutcontroller::class , 'logout'])->middleware('auth');
 
