@@ -15,6 +15,8 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+
+        // Camera
         DB::table('products')->insert([
             'productname' => 'FujiFilm Xt1',
             'productslug' =>Str::slug('FujiFilm Xt1'),
@@ -22,6 +24,8 @@ class ProductSeeder extends Seeder
             'price' => 12000000,
             'category_id' => 1
         ]);
+
+        
 
         DB::table('products')->insert([
             'productname' => 'Sony A7000',
@@ -31,6 +35,9 @@ class ProductSeeder extends Seeder
             'category_id' => 1
         ]);
 
+
+
+        // Beauty
         DB::table('products')->insert([
             'productname' => 'Loreal Paris',
             'productslug' =>Str::slug('Loreal Paris'),
