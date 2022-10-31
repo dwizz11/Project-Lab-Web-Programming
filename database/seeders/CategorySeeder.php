@@ -25,5 +25,20 @@ class CategorySeeder extends Seeder
             'category_name' => 'Beauty',
             'category_slug' => Str::slug('Beauty')
         ]);
+
+        DB::table('categories')->insert([
+            'category_name' => 'Game',
+            'category_slug' => Str::slug('Game')
+        ]);
+
+        DB::table('categories')->insert([
+            'category_name' => 'Anime',
+            'category_slug' => Str::slug('Anime')
+        ]);
+
+        DB::table('categories')->insert([
+            'category_name' => 'Sport',
+            'category_slug' => Str::slug('Sport')
+        ]);
     }
 }
