@@ -74,13 +74,19 @@
                 
 
                 @auth
+                @if (auth()->user()->isadmin == 0)
                 <li class="nav-item mx3 " onclick="checkCart()" style="position: relative;"><i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem; margin-right: 1rem; margin-top: 5px;color: white;cursor: pointer;"><p class="bg-danger text-center rounded-circle" style="font-size: 0.7rem; width: 1rem; height: 1rem;position: absolute;top: 0;right: 10px;padding-top: 1.2px">{{ $cartcount }}</p></i></li>
+                @endif
+                
                 <div class="btn-group">
                   <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Hi, {{ auth()->user()->name }}  </button>
           
                   <ul class="dropdown-menu dropdown-menu-dark ms-5 w-75 mt-3">
                     <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                    @if (auth()->user()->isadmin == 0)
                     <li><span class="dropdown-item" onclick="checkHistory()" style="cursor: pointer">History</span></li>
+                    @endif
+                    
                     <li> 
                       <form action="/logout" method="post">
                         @csrf
@@ -200,6 +206,36 @@
     animation: true,
     position: 'top-end',
     title: '{{ session('purchasesuccess') }}'
+  });
+
+</script>
+
+@elseif (session()->has('emptycart'))
+<script>
+  toastMixin.fire({
+      icon: 'info',
+      animation: true,
+      title: 'Your cart is empty, please purchase any item'
+    });
+
+</script>
+
+@elseif (session()->has('unauthorized'))
+<script>
+  toastMixin.fire({
+      icon: 'warning',
+      animation: true,
+      title: '{{ session('unauthorized') }}'
+    });
+
+</script>
+
+@elseif (session()->has('nohistory'))
+<script>
+ toastMixin.fire({
+    icon: 'info',
+    animation: true,
+    title: 'There are no transaction history'
   });
 
 </script>

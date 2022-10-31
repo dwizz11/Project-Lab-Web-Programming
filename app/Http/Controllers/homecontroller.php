@@ -77,7 +77,16 @@ class homecontroller extends Controller
     }
 
     public function showHistory(){
+       
+
+        if(auth()->user()->isadmin == 1) return back()->with('unauthorized', 'Admin dont have permission to history feature');
+
         $categories = category::all();
+        $getcartIdcount = count(DB::table('carts')->where('user_id','=',auth()->id())->latest()->get());
+
+
+        // dd($getcartIdcount);
+        if($getcartIdcount-1 === 0) return back()->with('nohistory', 'There are no transaction history');
 
         $cartItems = product::all();
         if(Auth::check()){

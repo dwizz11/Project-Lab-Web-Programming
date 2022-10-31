@@ -60,6 +60,11 @@ class cartcontroller extends Controller
         ->join('products','cart_items.product_id','=','products.id')
         ->where('carts.user_id' ,'=', auth()->id())
         ->where('carts.id','=',$latestcart->id)->get();
+        
+        if(auth()->user()->isadmin == 1) return back()->with('unauthorized', 'Admin cannot use cart feature');
+        if($cartItems->isEmpty() && auth()->user()->isadmin == 0) return back()->with('emptycart', 'your cart is empty');
+
+        
         // dd($cartItems);
 
         // if($cartItems->isEmpty()) return redirect('/home');
