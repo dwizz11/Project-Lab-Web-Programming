@@ -94,11 +94,14 @@ function getMessage() {
             //  console.log('this one');
          }else{
             // console.log('this two');
+            
             toastMixin.fire({
                icon: 'warning',
                animation: true,
                title: data.productname + 'has been removed from your cart'
              });
+
+   
          }
          
       }

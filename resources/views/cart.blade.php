@@ -20,8 +20,15 @@
           <p style="margin: 0;text-align: start">Total Price :  <b>IDR {{ number_format(($item->price*$item->quantity),2,",",".")}}</b></p>
           
       
-            <button type="button" class="btn btn-danger" style="position: absolute;right: 2rem;top: 2rem" value="{{ $item->cart_id }}/{{ $item->product_id }}" id="deletecartitem" onclick="deletecartitem()"><i class="fa-solid fa-trash"></i></button>
+            
          
+            <form action="/cart/delete/{{ $item->cart_id }}/{{ $item->product_id }}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger" style="position: absolute;right: 2rem;top: 2rem"><i class="fa-solid fa-trash"></i></button>
+            </form>
+
+
         </div>
 
       

@@ -62,7 +62,7 @@ class cartcontroller extends Controller
         ->where('carts.id','=',$latestcart->id)->get();
         
         if(auth()->user()->isadmin == 1) return back()->with('unauthorized', 'Admin cannot use cart feature');
-        if($cartItems->isEmpty() && auth()->user()->isadmin == 0) return back()->with('emptycart', 'your cart is empty');
+        if($cartItems->isEmpty() && auth()->user()->isadmin == 0) return redirect('/home')->with('emptycart', 'your cart is empty');
 
         
         // dd($cartItems);
@@ -93,7 +93,7 @@ class cartcontroller extends Controller
 
         $product = product::findOrfail($product_id);
 
-        $deleted = DB::table('cart_items')
+         DB::table('cart_items')
                    ->where('cart_id','=',$cart_id)
                    ->where('product_id','=',$product_id)
                    ->delete();
@@ -107,9 +107,12 @@ class cartcontroller extends Controller
         ->where('carts.id','=',$latestcart->id)->get();
                    
 
-        // dd($deleted);
+        // dd(count($cartItems));
 
-        return response()->json(array('productname'=> $product->productname, 'cartcount' => count($cartItems)), 200);
+        return redirect('/cart')->with([
+            'itemdeleted'=> $product->productname,
+            'cartcount' => count($cartItems)
+        ]);
     }
 
 

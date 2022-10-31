@@ -240,6 +240,15 @@
 
 </script>
 
+@elseif (session()->has('itemdeleted'))
+
+<script>
+  toastMixin.fire({
+               icon: 'warning',
+               animation: true,
+               title: '{{ session('itemdeleted') }} has been removed from your cart'
+             });
+</script>
 
 
 @endif
