@@ -150,7 +150,7 @@
   
   </script>
 
-@elseif (Auth::viaRemember())
+@elseif (session()->has('welcomeback'))
 <script>
   toastMixin.fire({
     animation: true,

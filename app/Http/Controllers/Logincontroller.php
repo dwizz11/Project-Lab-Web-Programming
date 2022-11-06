@@ -43,25 +43,18 @@ class Logincontroller extends Controller
             Cookie::queue('passwordcookie',$request->password, 120 );
         }
 
-        if(Auth::viaRemember()){
-            return  back()->with('welcomeback', 'Welcome Back');
-        }
-
         if(Auth::attempt($credentials)){
             $request->session()->regenerate(); 
             
+            if(Cookie::get('emailcookie') == $request->email)  return  redirect()->intended('/home')->with('welcomeback', 'Welcome Back');
             return redirect()->intended('/home')->with('welcome', 'Welcome, ' . auth()->user()->name);
         }
         else{
             $user = User::where('email',$request->email) -> first();
             if(!Hash::check($request->password, $user->password)){
                 return back()->with('LoginError', 'Wrong Password');
-                // dd('Wrong Password');
             }
         }
 
-        // dd('Login Failed');
-
-        return back()->withErrors($credentials);
     }
 }

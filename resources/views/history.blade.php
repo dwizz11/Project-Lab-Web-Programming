@@ -30,7 +30,7 @@
         <tr>
           <td>{{ $data->productname }}</td>
           <td>{{ $data->quantity }}</td>
-          <td>{{ $data->quantity*$data->productprice }}</td>
+          <td>IDR {{ number_format($data->quantity*$data->productprice,2,",",".") }}</td>
         </tr>
       @endforeach
       <tr>
