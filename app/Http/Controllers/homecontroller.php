@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class homecontroller extends Controller
 {
@@ -28,7 +29,7 @@ class homecontroller extends Controller
         
 
         $categories = category::all();
-
+// dd(Session::all());
         return view('index',[
             'category' => $categories,
             'title' => 'Home',

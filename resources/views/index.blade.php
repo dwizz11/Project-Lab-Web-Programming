@@ -9,7 +9,7 @@
       <div class="container  mt-5" id="content">
         {{-- Category --}}
         @foreach ($category as $category_item)
-        <div class="container  mt-5 bg-white position-relative" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important;">
+        <div class="container mt-5 bg-white position-relative" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important;">
           <h3 style="display: inline;">{{ $category_item->category_name}}</h3>
           <form action="/home/{{ $category_item->category_slug }}" method="get">
             @csrf
@@ -37,6 +37,10 @@
                 <span class="link"></span>
               </a>
             </div>
+
+            
+
+            
             @endforeach
               
             {{-- Products --}}
