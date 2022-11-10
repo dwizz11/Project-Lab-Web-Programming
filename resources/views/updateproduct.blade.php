@@ -9,6 +9,7 @@
       <h1 class="text-center">Update Product</h1>
       <form action="/manage/update/{{ $product->productslug }}" method="POST" id="updateproduct" enctype="multipart/form-data">
           @csrf
+          @method('PUT')
         {{-- Product Name --}}
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>

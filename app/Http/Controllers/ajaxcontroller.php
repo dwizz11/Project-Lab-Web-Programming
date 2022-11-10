@@ -47,22 +47,4 @@ class ajaxcontroller extends Controller
         
     }
 
-    // public function managesearchproduct(Request $request){
-
-    //     // return 'Halo';
-    //     $products = product::where('productname', 'like', '%'.$request->productname.'%')->get();
-
-    //     if($products->isEmpty()) {
-    //         return view('managesearch',[
-    //             'found'=> false,
-    //             'query' => $request->productname
-    //            ]);
-    //     }else{
-    //        return view('managesearch',[
-    //         'found' => true,
-    //         'products'=>$products
-    //        ]);
-    //     }
-    
-    // }
 }

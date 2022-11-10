@@ -60,7 +60,7 @@ Route::get('/history', [homecontroller::class , 'showHistory'])->middleware('aut
 
 Route::get('/manage', [admincontroller::class, 'index'])->middleware('auth')->middleware('admin');
 Route::get('/manage/add', [admincontroller::class, 'addproduct'])->middleware('auth')->middleware('admin');
-Route::put('/manage/update/{product:productslug}', [admincontroller::class, 'editproduct'])->middleware('auth')->middleware('admin');
-Route::post('/manage/update/{product:productslug}', [productcontroller::class, 'updateproduct'])->middleware('auth')->middleware('admin');
+Route::get('/manage/update/{product:productslug}', [admincontroller::class, 'editproduct'])->middleware('auth')->middleware('admin');
+Route::put('/manage/update/{product:productslug}', [productcontroller::class, 'updateproduct'])->middleware('auth')->middleware('admin');
 Route::delete('/manage/delete/{product:productslug}', [productcontroller::class, 'destroyproduct'])->middleware('auth')->middleware('admin');
 Route::post('/manage/add', [productcontroller::class, 'storeproduct'])->middleware('auth')->middleware('admin');

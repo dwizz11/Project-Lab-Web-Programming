@@ -31,9 +31,8 @@
               
             </div>
     
-            <form action="/manage/update/{{ $products->productslug }}" method="post">
+            <form action="/manage/update/{{ $products->productslug }}" method="get">
               @csrf
-              @method('PUT')
               <button type="submit" class="btn btn-warning" style="position: absolute;right: 5rem;" ><i class="fa-solid fa-pen-to-square"></i></button>
             </form>
            
