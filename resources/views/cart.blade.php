@@ -6,23 +6,26 @@
 <h3 style="text-align: center;" class="mt-4">My Cart</h3>
 <div class="container mt-2 p-5 cart w-50" style="max-height: 40rem !important; overflow-y: scroll; overflow-x: hidden">
    
+  @php
+      $totalprice = 0;
+  @endphp
       {{-- Category --}}
-      @foreach ($cartitems as $item)
+      @foreach ($usercart->cart_items as $item)
       <div class="container mb-5 bg-white d-flex w-100 align-items-center" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; position: relative;">
 
         <div class="container w-50 rounded-3 overflow-hidden" style="height: 10em;">
-          <img src="{{ asset('storage/' . $item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img/img2.jpg') }}">
+          <img src="{{ asset('storage/' . $item->product->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img/img2.jpg') }}">
         </div>
         
         <div class="container ms-3">
-          <p style="margin: 0;text-align: start;font-weight: 700">{{ $item->productname}}</p>
+          <p style="margin: 0;text-align: start;font-weight: 700">{{ $item->product->productname}}</p>
           <p style="margin: 0;text-align: start">Quantity : {{ $item->quantity}}</p>
-          <p style="margin: 0;text-align: start">Total Price :  <b>IDR {{ number_format(($item->price*$item->quantity),2,",",".")}}</b></p>
+          <p style="margin: 0;text-align: start">Total Price :  <b>IDR {{ number_format(($item->product->price*$item->quantity),2,",",".")}}</b></p>
           
       
             
          
-            <form action="/cart/delete/{{ $item->cart_id }}/{{ $item->product_id }}" method="post">
+            <form action="/cart/delete/{{ $usercart->id }}/{{ $item->product_id }}" method="post">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger" style="position: absolute;right: 2rem;top: 2rem"><i class="fa-solid fa-trash"></i></button>
@@ -37,6 +40,10 @@
      
       
       </div>
+
+      @php
+          $totalprice+=$item->quantity*$item->product->price
+      @endphp
       @endforeach
      
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
 use App\Models\category;
 use App\Models\product;
 use Illuminate\Http\Request;
@@ -17,13 +18,7 @@ class productcontroller extends Controller
 
         $cartItems = product::all();
         if(Auth::check()){
-            $latestcart = DB::table('carts')->where('carts.user_id','=',auth()->id())->latest()->first();
-
-            $cartItems = DB::table('cart_items')
-            ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
-            ->join('products','cart_items.product_id','=','products.id')
-            ->where('carts.user_id' ,'=', auth()->id())
-            ->where('carts.id','=',$latestcart->id)->get();
+            $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
         }
 
 
@@ -31,7 +26,7 @@ class productcontroller extends Controller
             'category' => $categories,
             'title' => ucfirst($category),
             'product_item' => $product,
-            'cartcount' => $cartItems->count()
+            'usercart' => $usercart
         ]);
     }
 

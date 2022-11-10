@@ -11,11 +11,8 @@ class category extends Model
     protected $table = 'categories';
 
     public function products()
-    
     {
        return $this->hasMany(product::class);
-        // $limiter = $this->hasMany(product::class);
-        // return $limiter->limit(4);
     }
 
 }

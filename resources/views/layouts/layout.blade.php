@@ -75,7 +75,7 @@
 
                 @auth
                 @if (auth()->user()->isadmin == 0)
-                <li class="nav-item mx3 " onclick="checkCart()" style="position: relative;"><i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem; margin-right: 1rem; margin-top: 5px;color: white;cursor: pointer;"><p class="bg-danger text-center rounded-circle" style="font-size: 0.7rem; width: 1rem; height: 1rem;position: absolute;top: 0;right: 10px;padding-top: 1.2px">{{ $cartcount }}</p></i></li>
+                <li class="nav-item mx3 " onclick="checkCart()" style="position: relative;"><i class="fa-solid fa-cart-shopping" style="font-size: 1.5rem; margin-right: 1rem; margin-top: 5px;color: white;cursor: pointer;"><p class="bg-danger text-center rounded-circle" style="font-size: 0.7rem; width: 1rem; height: 1rem;position: absolute;top: 0;right: 10px;padding-top: 1.2px">{{ count($usercart->cart_items) }}</p></i></li>
                 @endif
                 
                 <div class="btn-group">

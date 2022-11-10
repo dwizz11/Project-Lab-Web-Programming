@@ -13,7 +13,7 @@
 
 
           {{-- Products --}}
-          @foreach ($category_items as $product_item)
+          @foreach ($category as $product_item)
           <div class="card" style="width: 18rem;position: relative;">
             <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="160rem" style="object-fit: cover">
             <div class="card-body">
@@ -26,7 +26,7 @@
             </form> --}}
             </div>
 
-            <a href="/home/{{ $currentcategory }}/{{ $product_item->productslug }}">
+            <a href="/home/{{ $title }}/{{ $product_item->productslug }}">
               <span class="link"></span>
             </a>
           </div>
@@ -40,7 +40,7 @@
   
         
     </div>
-      {{ $category_items->links() }}
+      {{ $category->links() }}
       </div>
 
       

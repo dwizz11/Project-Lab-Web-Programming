@@ -36,9 +36,8 @@ class cartcontroller extends Controller
  
         $newItem->quantity = $request->quantity;
  
-         // dd($getCartId->first()->id);
+
         $newItem->save();
-     //    dd($newItem);
        }
        
 
@@ -59,43 +58,26 @@ class cartcontroller extends Controller
 
 
     public function showCart(){
-        $latestcart = DB::table('carts')->where('carts.user_id','=',auth()->id())->latest()->first();
+ 
 
-        $cartItems = DB::table('cart_items')
-        ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
-        ->join('products','cart_items.product_id','=','products.id')
-        ->where('carts.user_id' ,'=', auth()->id())
-        ->where('carts.id','=',$latestcart->id)->get();
+        $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
         
         if(auth()->user()->isadmin == 1) return back()->with('unauthorized', 'Admin cannot use cart feature');
-        if($cartItems->isEmpty() && auth()->user()->isadmin == 0) return redirect('/home')->with('emptycart', 'your cart is empty');
+        if($usercart->cart_items->isEmpty() && auth()->user()->isadmin == 0) return redirect('/home')->with('emptycart', 'your cart is empty');
 
-        
-        // dd($cartItems);
 
-        // if($cartItems->isEmpty()) return redirect('/home');
         $categories = category::all();
         
-        $totalprice = 0;
-        foreach ($cartItems as $item) {
-            $totalprice+=$item->price*$item->quantity;
-        }
-
-        // dd($cartItems);
 
         return view('cart',[
             'category' => $categories,
             'title' => 'Cart',
-            'cartitems' => $cartItems,
-            'totalprice' => $totalprice,
-            'cartcount' => $cartItems->count()
+            'usercart' => $usercart
         ]);
     }
 
 
     public function destroycartitems($cart_id, $product_id){
-
-     
 
         $product = product::findOrfail($product_id);
 
@@ -103,21 +85,11 @@ class cartcontroller extends Controller
                    ->where('cart_id','=',$cart_id)
                    ->where('product_id','=',$product_id)
                    ->delete();
-
-        $latestcart = DB::table('carts')->where('carts.user_id','=',auth()->id())->latest()->first();
-
-        $cartItems = DB::table('cart_items')
-        ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
-        ->join('products','cart_items.product_id','=','products.id')
-        ->where('carts.user_id' ,'=', auth()->id())
-        ->where('carts.id','=',$latestcart->id)->get();
                    
 
-        // dd(count($cartItems));
 
         return redirect('/cart')->with([
             'itemdeleted'=> $product->productname,
-            'cartcount' => count($cartItems)
         ]);
     }
 
