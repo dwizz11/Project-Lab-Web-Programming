@@ -40,7 +40,7 @@ class homecontroller extends Controller
         return view('category',[
             'category' => $categories,
             'title' => $category->category_name,
-            'category' => $category->products()->paginate(10),
+            'currentcategory' => $category->products()->paginate(10),
             'usercart' => $usercart
         ]);
     }

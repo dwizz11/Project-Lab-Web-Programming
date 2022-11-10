@@ -13,7 +13,7 @@
 
 
           {{-- Products --}}
-          @foreach ($category as $product_item)
+          @foreach ($currentcategory as $product_item)
           <div class="card" style="width: 18rem;position: relative;">
             <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="160rem" style="object-fit: cover">
             <div class="card-body">
@@ -40,7 +40,7 @@
   
         
     </div>
-      {{ $category->links() }}
+      {{ $currentcategory->links() }}
       </div>
 
       
