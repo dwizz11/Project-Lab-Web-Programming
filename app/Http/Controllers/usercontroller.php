@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cart;
 use App\Models\category;
 use App\Models\product;
 use App\Models\User;
@@ -12,16 +13,7 @@ use Illuminate\Support\Facades\DB;
 class usercontroller extends Controller
 {
     public function index(){
-        $cartItems = product::all();
-        if(Auth::check()){
-            $latestcart = DB::table('carts')->where('carts.user_id','=',auth()->id())->latest()->first();
-
-            $cartItems = DB::table('cart_items')
-            ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
-            ->join('products','cart_items.product_id','=','products.id')
-            ->where('carts.user_id' ,'=', auth()->id())
-            ->where('carts.id','=',$latestcart->id)->get();
-        }
+        if(Auth::check()) $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
         
         $categories = category::all();
 
@@ -29,7 +21,7 @@ class usercontroller extends Controller
         return view('profile',[
             'category' => $categories,
             'title' => 'Profile',
-            'cartcount' => $cartItems->count(),
+            'usercart' => $usercart,
             'user' => $user
         ]);
     }
