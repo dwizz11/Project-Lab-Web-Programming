@@ -30,7 +30,7 @@ Route::get('/', function () {
 Route::get('/home', [homecontroller::class, 'index']);
 Route::get('/home/{category:category_slug}', [homecontroller::class, 'showCategory']);
 Route::get('/home/{category}/{product:productslug}', [productcontroller::class, 'showProduct']);
-Route::post('/home/buy/{id}', [cartcontroller::class, 'addtoCart'])->middleware('auth');
+Route::post('/home/buy', [cartcontroller::class, 'addtoCart'])->middleware('auth');
 
 
 Route::get('/cart', [cartcontroller::class, 'showCart'])->middleware('auth');

@@ -18,22 +18,29 @@ class cartcontroller extends Controller
             'quantity' => ['required']
         ]);
 
-       $checkifitemexist = DB::table('carts')->select('id')->where('user_id','=', auth()->id())->latest()->get();
-      
         
-       $getCartId = DB::table('carts')->select('id')->where('user_id','=', auth()->id())->latest()->get();
 
-       $newItem = new cart_items();
+       $getCartId = DB::table('carts')->select('id')->where('user_id','=', auth()->id())->latest()->first();
 
-       $newItem->cart_id = $getCartId->first()->id;
+       $checkitemifexist = cart_items::where('cart_id', '=', $getCartId->id)->where('product_id','=',$request->id)->first();
 
-       $newItem->product_id = $request->id;
+       if($checkitemifexist){
+        $checkitemifexist->quantity+=$request->quantity;
+        $checkitemifexist->save();
+       }else{
+        $newItem = new cart_items();
 
-       $newItem->quantity = $request->quantity;
-
-        // dd($getCartId->first()->id);
-       $newItem->save();
-    //    dd($newItem);
+        $newItem->cart_id = $getCartId->id;
+ 
+        $newItem->product_id = $request->id;
+ 
+        $newItem->quantity = $request->quantity;
+ 
+         // dd($getCartId->first()->id);
+        $newItem->save();
+     //    dd($newItem);
+       }
+       
 
     return redirect('/home')->with('addedproduct', '<b>' . $request->quantity .'</b>'  .' '. $request->productname . ' added to your cart');
     }
@@ -45,7 +52,6 @@ class cartcontroller extends Controller
         $cartItems = DB::table('cart_items')
         ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
         ->join('products','cart_items.product_id','=','products.id')
-        ->where('carts.user_id' ,'=', auth()->id())
         ->where('carts.id','=',$latestcart->id)->get();
 
         if($cartItems->isEmpty()) return response()->json(array('empty'=> true), 200);

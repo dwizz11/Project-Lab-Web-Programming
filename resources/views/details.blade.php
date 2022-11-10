@@ -19,9 +19,10 @@
 
           @auth
           @if (auth()->user()->isadmin == 0)
-          <form action="/home/buy/{{ $product_item->id }}" method="post">
+          <form action="/home/buy" method="post">
             @csrf
             <input type="hidden" name="productname" value="{{ $product_item->productname }}">
+            <input type="hidden" name="id" value="{{ $product_item->id }}">
             <input type="number" class="form-control mb-2" id="exampleFormControlInput1" placeholder="Quantity" name="quantity" min=0>
 
             @error('quantity')
