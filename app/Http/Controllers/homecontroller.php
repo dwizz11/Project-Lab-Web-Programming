@@ -15,7 +15,7 @@ class homecontroller extends Controller
 {
     public function index(){
 
-
+        $usercart='';
         if(Auth::check()) $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
 
         
@@ -33,7 +33,7 @@ class homecontroller extends Controller
 
         $categories = category::all();
 
-
+        $usercart='';
         if(Auth::check()) $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
 
 
@@ -62,7 +62,7 @@ class homecontroller extends Controller
 
         if($getcartIdcount-1 === 0) return back()->with('nohistory', 'There are no transaction history');
 
-
+        $usercart='';
         if(Auth::check()) $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
 
 

@@ -15,11 +15,9 @@ class productcontroller extends Controller
 
     public function showProduct($category,product $product){
         $categories = category::all();
-
-        $cartItems = product::all();
-        if(Auth::check()){
-            $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
-        }
+        $usercart='';
+        if(Auth::check()) $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
+ 
 
 
         return view('details',[
