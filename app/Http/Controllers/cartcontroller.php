@@ -96,9 +96,7 @@ class cartcontroller extends Controller
 
     public function purchasecartitems(){
 
-        $currentcartid = DB::table('carts')->where('carts.user_id','=',auth()->id())->latest()->first();
-
-        $currentcart = cart::find($currentcartid->id);
+        $currentcart = cart::where('carts.user_id','=',auth()->id())->latest()->first();
         $currentcart->updated_at = Carbon::now();
         $currentcart->save();
         $newcart = new cart();
