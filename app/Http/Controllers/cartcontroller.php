@@ -9,6 +9,7 @@ use App\Models\product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\UrlGenerator;
 
 class cartcontroller extends Controller
 {
@@ -46,24 +47,19 @@ class cartcontroller extends Controller
 
 
     public function checkCart(){
-        $latestcart = DB::table('carts')->where('carts.user_id','=',auth()->id())->latest()->first();
 
-        $cartItems = DB::table('cart_items')
-        ->join('carts', 'cart_items.cart_id', '=', 'carts.id')
-        ->join('products','cart_items.product_id','=','products.id')
-        ->where('carts.id','=',$latestcart->id)->get();
 
-        if($cartItems->isEmpty()) return response()->json(array('empty'=> true), 200);
+        $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
+
+        if($usercart->cart_items->isEmpty()) return response()->json(array('empty'=> true), 200);
     }
 
 
     public function showCart(){
- 
 
         $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
         
-        if(auth()->user()->isadmin == 1) return back()->with('unauthorized', 'Admin cannot use cart feature');
-        if($usercart->cart_items->isEmpty() && auth()->user()->isadmin == 0) return redirect('/home')->with('emptycart', 'your cart is empty');
+        if($usercart->cart_items->isEmpty() && auth()->user()->isadmin == 0) return redirect(url()->previous())->with('emptycart', 'your cart is empty');
 
 
         $categories = category::all();
@@ -86,7 +82,9 @@ class cartcontroller extends Controller
                    ->where('product_id','=',$product_id)
                    ->delete();
                    
+        $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
 
+        if($usercart->cart_items->empty()) return redirect('/home')->with(['itemdeleted'=> $product->productname]);
 
         return redirect('/cart')->with([
             'itemdeleted'=> $product->productname,

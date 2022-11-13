@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class useronly
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,8 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $admin = User::find(auth()->id());
-
-        if(auth()->user()->isadmin === 0){
-            return back()->with('adminonly', 'User dont have permission to this feature');
+        if(auth()->user()->isadmin == 1){
+            return back()->with('unauthorized', 'Admin dont have permission to this feature');
         }
         return $next($request);
     }

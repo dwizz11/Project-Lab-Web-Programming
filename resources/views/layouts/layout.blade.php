@@ -50,11 +50,13 @@
                     </ul>
                   </div>
               </li>
-              @can('admin')
+              @auth
+              @if (auth()->user()->isadmin == 1)
               <li class="nav-item mx-2">
                 <a class="nav-link" href="/manage">Manage Product</a>
               </li> 
-              @endcan
+              @endif
+              @endauth
               
             </ul>
 
@@ -226,6 +228,16 @@
       icon: 'warning',
       animation: true,
       title: '{{ session('unauthorized') }}'
+    });
+
+</script>
+
+@elseif (session()->has('adminonly'))
+<script>
+  toastMixin.fire({
+      icon: 'warning',
+      animation: true,
+      title: '{{ session('adminonly') }}'
     });
 
 </script>

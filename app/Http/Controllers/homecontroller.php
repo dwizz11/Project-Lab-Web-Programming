@@ -54,7 +54,6 @@ class homecontroller extends Controller
     public function showHistory(){
        
 
-        if(auth()->user()->isadmin == 1) return back()->with('unauthorized', 'Admin dont have permission to history feature');
 
         $categories = category::all();
         $getcartIdcount = count(cart::where('user_id','=',auth()->id())->latest()->get());
