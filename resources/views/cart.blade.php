@@ -7,6 +7,7 @@
 <div class="container mt-2 p-5 cart w-50" style="max-height: 40rem !important; overflow-y: scroll; overflow-x: hidden">
    haloasdasd
    blablablbla
+   asdasdasdasdasdasd
   @php
       $totalprice = 0;
   @endphp
