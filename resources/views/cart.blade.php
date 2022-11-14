@@ -5,7 +5,7 @@
 
 <h3 style="text-align: center;" class="mt-4">My Cart</h3>
 <div class="container mt-2 p-5 cart w-50" style="max-height: 40rem !important; overflow-y: scroll; overflow-x: hidden">
-   
+   haloasdasd
   @php
       $totalprice = 0;
   @endphp
