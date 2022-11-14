@@ -8,6 +8,7 @@
 
   asdasdasdasda
   halo felix tio
+  haihai
   @php
       $totalprice = 0;
   @endphp
