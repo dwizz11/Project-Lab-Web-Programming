@@ -4,7 +4,6 @@
 <div class="container mt-5 p-2">
         <input class="form-control me-2" type="search" placeholder="Search product" aria-label="Search" id="searchbar">
 
-Testing bla bla
       
       <div class="container  mt-5" id="content">
         {{-- Category --}}
