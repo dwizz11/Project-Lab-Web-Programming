@@ -39,7 +39,6 @@ Route::post('/cart/purchase', [cartcontroller::class, 'purchasecartitems'])->mid
 Route::get('/checkcart', [cartcontroller::class, 'checkCart'])->middleware('auth')->middleware('useronly');
 Route::get('/search', [ajaxcontroller::class, 'searchproduct']);
 Route::get('/manage/search', [ajaxcontroller::class, 'managesearchproduct'])->middleware('auth')->middleware('admin');
-// Route::get('/profile', [homecontroller::class, 'showCart'])->middleware('auth');
 
 
 

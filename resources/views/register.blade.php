@@ -93,12 +93,6 @@
             <option selected value = "">Select Country</option>
           </select>
 
-         
-          {{-- @if(session()->has('country'))
-          <div class="error" style="color: red">
-          {{ session('country') }}
-        </div>
-         @endif --}}
 
          @error('country')
          <div class="error" style="color: red">

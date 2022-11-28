@@ -12,7 +12,6 @@ class ajaxcontroller extends Controller
 
     public function searchproduct(Request $request){
 
-        // return 'Halo';
         $products = product::where('productname', 'like', '%'.$request->productname.'%')->get();
 
         if($products->isEmpty()) {

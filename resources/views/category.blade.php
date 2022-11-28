@@ -20,10 +20,6 @@
               <p style="margin: 0">{{ $product_item->productname }}</p>
               <p style="font-weight: 700; margin: 0">Rp. {{ $product_item->price }},-</p>
               <p class="card-text">{{ $product_item->productdesc }}</p>
-             {{-- <form action="/home/{{ $currentcategory }}/{{ $product_item->productslug }}" method="get">
-             @csrf
-              <button type="submit" class="btn btn-secondary">Details</button>
-            </form> --}}
             </div>
 
             <a href="/home/{{ $title }}/{{ $product_item->productslug }}">

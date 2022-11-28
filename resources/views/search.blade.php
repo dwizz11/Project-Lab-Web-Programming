@@ -17,11 +17,7 @@
           
           <p class="card-title m-0">{{ $product_item->productname }}</p>
           <p style="font-weight: 700; margin: 0; margin-bottom: 1rem">IDR {{ number_format($product_item->price,2,",",".") }}</p>
-          {{-- <p class="card-text">{{ $product_item->productdesc }}</p> --}}
-          {{-- <form action="" method="get">
-            @csrf
-             <button type="submit" class="btn btn-secondary ">Details</button>
-           </form> --}}
+
         </div>
         <a href="/home/{{ $product_item->category->category_slug }}/{{ $product_item->productslug }}">
           <span class="link"></span>
