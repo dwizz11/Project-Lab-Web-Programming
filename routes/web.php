@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/home', [homecontroller::class, 'index']);
 Route::get('/home/{category:category_slug}', [homecontroller::class, 'showCategory']);
-Route::get('/home/{category}/{product:productslug}', [productcontroller::class, 'showProduct']);
+Route::get('/home/{category}/{product:productslug}', [productcontroller::class, 'showProduct'])->name('category.product');
 Route::post('/home/buy', [cartcontroller::class, 'addtoCart'])->middleware('auth')->middleware('useronly');
 
 

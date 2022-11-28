@@ -3,8 +3,6 @@
 @section('content')
 <div class="container mt-5 p-2">
         <input class="form-control me-2" type="search" placeholder="Search product" aria-label="Search" id="searchbar">
-
-      Halo chris disini
       <div class="container  mt-5" id="content">
         {{-- Category --}}
         @foreach ($category as $category_item)
@@ -32,7 +30,8 @@
                    <button type="submit" class="btn btn-secondary ">Details</button>
                  </form> --}}
               </div>
-              <a href="/home/{{ $category_item->category_slug }}/{{ $product_item->productslug }}">
+              {{-- <a href="/home/{{ $category_item->category_slug }}/{{ $product_item->productslug }}"> --}}
+              <a href="{{ route('category.product', ['category' => $category_item->category_slug, 'product' => $product_item->productslug]) }}">
                 <span class="link"></span>
               </a>
             </div>
