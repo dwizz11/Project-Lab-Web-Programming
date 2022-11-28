@@ -12,6 +12,9 @@ class ajaxcontroller extends Controller
 
     public function searchproduct(Request $request){
 
+        if($request->productname == ""){
+            return redirect('/home');
+        }
         $products = product::where('productname', 'like', '%'.$request->productname.'%')->get();
 
         if($products->isEmpty()) {

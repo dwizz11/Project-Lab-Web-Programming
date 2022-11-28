@@ -150,7 +150,7 @@ function getMessage() {
          delayGet = setTimeout(() => {$.ajax({
             type: 'get',
             url: "/search",
-            data: {productname: searchvalue, page: 'manage'},
+            data: {productname: searchvalue, page: 'manage',button:'false'},
             success: function (data) {
                $('#managecontent').html(data)
             }

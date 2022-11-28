@@ -45,5 +45,10 @@ class CartSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
         
+        DB::table('carts')->insert([
+            'user_id' => 6,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 }
