@@ -87,13 +87,9 @@ function getMessage() {
                    })
                }
              })
-            // sessionStorage.setItem("removedcartitem", data.productname);
       
             
-
-            //  console.log('this one');
          }else{
-            // console.log('this two');
             
             toastMixin.fire({
                icon: 'warning',
@@ -113,36 +109,52 @@ function getMessage() {
   $(document).ready(function(){
    var homeclone = $("#content").clone();
    var manageclone = $("#managecontent").clone();
+   var delayGet;
 
-      $('#searchbar').keyup(function (e) { 
+      $('#searchbar').keyup(function (e) {
+         
          var searchvalue = $('#searchbar').val();
-         if(searchvalue == "")  $('#content').replaceWith(homeclone.clone());
-         if(searchvalue != ""){
-            $.ajax({
-               type: 'get',
-               url: "/search",
-               data: {productname: searchvalue, page: 'home'},
-               success: function (data) {
-                  $('#content').html(data)
-               }
-            });
+         searchvalue = $.trim(searchvalue);
+         if(searchvalue.length == 0){
+            $('#content').replaceWith(homeclone.clone());
+            return;
          }
+         $('#content').html(`
+         <div class="container mt-5 bg-white position-relative" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important;">
+         <h5>Searching Product</h5>
+         </div>
+         `);
+         clearTimeout(delayGet);
+         delayGet = setTimeout(() => {$.ajax({
+            type: 'get',
+            url: "/search",
+            data: {productname: searchvalue, page: 'home'},
+            success: function (data) {
+               $('#content').html(data)
+            }
+         })}, 500);
+
          
       });
 
       $('#managesearch').keyup(function (e) { 
          var searchvalue = $('#managesearch').val();
-         if(searchvalue == "")  $('#managecontent').replaceWith(manageclone.clone());
-         if(searchvalue != ""){
-            $.ajax({
-               type: 'get',
-               url: "/search",
-               data: {productname: searchvalue, page: 'manage'},
-               success: function (data) {
-                  $('#managecontent').html(data)
-               }
-            });
+         if(searchvalue.length == 0){
+            $('#managecontent').replaceWith(manageclone.clone());
+            return;
          }
+         $('#managecontent').html(`
+         <h5>Searching Product</h5>
+         `);
+         clearTimeout(delayGet);
+         delayGet = setTimeout(() => {$.ajax({
+            type: 'get',
+            url: "/search",
+            data: {productname: searchvalue, page: 'manage'},
+            success: function (data) {
+               $('#managecontent').html(data)
+            }
+         })}, 500);
          
       });
 

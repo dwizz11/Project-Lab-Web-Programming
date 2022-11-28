@@ -17,8 +17,15 @@
               
             </div>
     
-            <button type="button" class="btn btn-danger" style="position: absolute;right: 2rem;"><i class="fa-solid fa-trash"></i></button>
-            <button type="button" class="btn btn-warning" style="position: absolute;right: 5rem;"><i class="fa-solid fa-pen-to-square"></i></button>
+            <form action="/manage/update/{{ $products->productslug }}" method="get">
+              <button type="submit" class="btn btn-warning" style="position: absolute;right: 5rem;" ><i class="fa-solid fa-pen-to-square"></i></button>
+            </form>
+           
+            <form action="/manage/delete/{{ $products->productslug }}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger" style="position: absolute;right: 2rem;"><i class="fa-solid fa-trash"></i></button>
+            </form>
         </div>
         @endforeach
 
