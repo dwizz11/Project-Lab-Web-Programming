@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ajaxcontroller extends Controller
 {
     
-    // ini search function
+
     public function searchproduct(Request $request){
 
         if($request->productname == ""){
