@@ -15,11 +15,11 @@
       <div class="container mb-5 bg-white d-flex w-100 align-items-center" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; position: relative;">
 
   
-          <img src="{{ asset('storage/' . $item->product->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="50%" height="130rem" style="object-fit: contain" >
+          <img src="{{ asset('storage/' . $item->product->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" height="130rem" style="object-fit: contain;width: 40%!important" >
        
 
         <div class="container ms-3">
-          <p style="margin: 0;text-align: start;font-weight: 700">{{ $item->product->productname}}</p>
+          <p style="margin: 0;text-align: start;font-weight: 700;width: 70%">{{ $item->product->productname}}</p>
           <p style="margin: 0;text-align: start">Quantity : {{ $item->quantity}}</p>
           <p style="margin: 0;text-align: start">Total Price :  <b>IDR {{ number_format(($item->product->price*$item->quantity),2,",",".")}}</b></p>
 
