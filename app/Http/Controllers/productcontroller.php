@@ -108,7 +108,7 @@ class productcontroller extends Controller
 
         $newproduct->save();
 
-        return redirect('/manage')->with('newproductadded',$request->productname . 'has been added to Barbatos Shop');
+        return redirect('/manage')->with('newproductadded',$request->productname . ' has been added to Barbatos Shop');
     }
 
 
