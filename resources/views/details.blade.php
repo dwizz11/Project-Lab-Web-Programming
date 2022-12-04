@@ -6,11 +6,11 @@
    
 
       {{-- Category --}}
-      <div class="container m-auto bg-white d-flex position-absolute top-50 start-50 translate-middle w-50" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important">
+      <div class="container m-auto bg-white d-flex position-absolute top-50 start-50 translate-middle w-50" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important;">
 
-        <div class="container w-50" style="height: 12em !important; overflow: hidden;">
-          <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}">
-        </div>
+
+          <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="195rem" style="object-fit: contain">
+
         
         <div class="container align-self-center ms-4">
           <p style="margin: 0;text-align: start;font-weight: 700">{{ $product_item->productname}}</p>

@@ -40,9 +40,9 @@
         @endphp  
       @endforeach
       <tr>
-        <td>Total</td>
-        <td>{{  $totalqty }} Items(s)</td>
-        <td>IDR {{ number_format($totalprice,2,",",".") }} </td>
+        <th>Total</th>
+        <th>{{  $totalqty }} Items(s)</th>
+        <th>IDR {{ number_format($totalprice,2,",",".") }} </th>
       </tr>
       
     </tbody>
