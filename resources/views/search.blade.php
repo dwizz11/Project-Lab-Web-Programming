@@ -12,7 +12,7 @@
       {{-- Products --}}
       @foreach ($products as $product_item)
       <div class="card" style="width: 18rem; position: relative;">
-        <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="160rem" style="object-fit: cover">
+        <img src="{{ asset('storage/' . $product_item->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="160rem" style="object-fit: contain">
         <div class="card-body">
           
           <p class="card-title m-0">{{ $product_item->productname }}</p>

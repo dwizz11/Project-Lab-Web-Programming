@@ -14,9 +14,9 @@
       @foreach ($usercart->cart_items as $item)
       <div class="container mb-5 bg-white d-flex w-100 align-items-center" style="border-radius: 20px; box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; position: relative;">
 
-        <div class="container w-50 rounded-3 overflow-hidden" style="height: 10em;">
-          <img src="{{ asset('storage/' . $item->product->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img/img2.jpg') }}">
-        </div>
+  
+          <img src="{{ asset('storage/' . $item->product->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="50%" height="130rem" style="object-fit: contain" >
+       
 
         <div class="container ms-3">
           <p style="margin: 0;text-align: start;font-weight: 700">{{ $item->product->productname}}</p>

@@ -17,14 +17,14 @@
 
     <div class="container d-flex flex-column align-items-center mt-2 pb-0" style="border-radius: 20px; overflow-y: scroll;max-height: 40rem !important;" id="managecontent">
         @foreach ($products as $products)
-        <div class="container bg-white d-flex w-50 mt-3 mb-2" style="border-radius: 20px; box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; margin-left: 0 !important; margin-right: 0 !important; position: relative;">
+        <div class="container bg-white d-flex mt-3 mb-2" style="border-radius: 20px; box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2); text-align: center; padding: 20px !important; margin-left: 0 !important; margin-right: 0 !important; position: relative; width: 60%">
     
-            <div class="container w-50">
-              <img src="{{ asset('storage/' . $products->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" width="100%" height="150rem" style="object-fit: cover">
-            </div>
+        
+              <img src="{{ asset('storage/' . $products->productphoto) }}" class="card-img-top" alt="{{ asset('storage/' .'img2.jpg') }}" style="width: 40% !important; object-fit: contain" height="150rem">
+         
             
             <div class="container d-flex flex-column justify-content-center">
-              <h5 style="margin: 0;text-align: start">{{ $products->productname}}</h5>
+              <h5 style="margin: 0;text-align: start; width: 70%">{{ $products->productname}}</h5>
               <p style="margin: 0;text-align: start">IDR {{ number_format($products->price,2,",",".")}}</p>
               <p style="margin: 0;text-align: start">{{ $products->productdesc}}</p>
     
