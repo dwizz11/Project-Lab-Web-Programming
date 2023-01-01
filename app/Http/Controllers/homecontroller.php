@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cart;
 use App\Models\category;
 use App\Models\product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,9 +47,9 @@ class homecontroller extends Controller
     }
 
     public function checkHistory(){
-        $getcartIdcount = count(DB::table('carts')->where('user_id','=',auth()->id())->latest()->get());
+        $getTransactions = count(DB::table('transactions')->where('user_id','=',auth()->id())->get());
 
-        if($getcartIdcount-1 === 0) return response()->json(array('empty'=> true), 200);
+        if($getTransactions === 0) return response()->json(array('empty'=> true), 200);
     }
 
     public function showHistory(){
@@ -56,22 +57,22 @@ class homecontroller extends Controller
 
 
         $categories = category::all();
-        $getcartIdcount = count(cart::where('user_id','=',auth()->id())->latest()->get());
+        $getcartIdcount = count(Transaction::where('user_id','=',auth()->id())->get());
 
 
-        if($getcartIdcount-1 === 0) return back()->with('nohistory', 'There are no transaction history');
+        if($getcartIdcount === 0) return back()->with('nohistory', 'There are no transaction history');
 
         $usercart='';
         if(Auth::check()) $usercart = cart::where('user_id','=',auth()->id())->latest()->first();
 
 
-        $getcartID = cart::where('user_id','=',auth()->id())->oldest()->limit($getcartIdcount-1)->get();
+        $getTrasactions = Transaction::where('user_id','=',auth()->id())->get();
 
         return view('history',[
             'category' => $categories,
             'title' => 'History',
             'usercart' => $usercart,
-            'cart' => $getcartID
+            'transactions' => $getTrasactions
         ]);
     }
     

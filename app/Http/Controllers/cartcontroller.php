@@ -6,6 +6,8 @@ use App\Models\cart;
 use App\Models\cart_items;
 use App\Models\category;
 use App\Models\product;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -94,14 +96,37 @@ class cartcontroller extends Controller
 
     public function purchasecartitems(){
 
-        $currentcart = cart::where('carts.user_id','=',auth()->id())->latest()->first();
-        $currentcart->updated_at = Carbon::now();
-        $currentcart->save();
-        $newcart = new cart();
+        // $currentcart = cart::where('carts.user_id','=',auth()->id())->latest()->first();
+        // $currentcart->updated_at = Carbon::now();
+        // $currentcart->save();
+        // $newcart = new cart();
 
-        $newcart->user_id = auth()->id();
+        // $newcart->user_id = auth()->id();
 
-        $newcart->save();
+        // $newcart->save();
+
+        $newTransaction = new Transaction();
+
+        $newTransaction->user_id = auth()->user()->id;
+
+        $newTransaction->save();
+
+
+        $cart = cart::where('user_id', '=', auth()->user()->id)->first();
+
+        foreach ($cart->cart_items as $key) {
+            $newTransactionItems = new TransactionDetail();
+
+            $newTransactionItems->transaction_id = $newTransaction->id;
+            $newTransactionItems->product_id = $key->product_id;
+            $newTransactionItems->quantity = $key->quantity;
+
+            $newTransactionItems->save();
+
+            $key->delete();
+
+        }
+
 
 
         return redirect('/home')->with('purchasesuccess', 'All items have been purchased');

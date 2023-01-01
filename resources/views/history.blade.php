@@ -7,14 +7,14 @@
 <div class="container mt-2 p-5 cart w-50" style="max-height: 40rem !important; overflow-y: scroll; overflow-x: hidden">
 
  
-@foreach ($cart as $item)
+@foreach ($transactions as $item)
 @php
   $totalqty = 0;
   $totalprice = 0;   
 @endphp  
 <div class="container">
   <div class="container bg bg-info">
-    <p style="font-size: 1.1rem;margin: 0"><span>Transaction Date: </span>{{ $item->updated_at }}</p>
+    <p style="font-size: 1.1rem;margin: 0"><span>Transaction Date: </span>{{ $item->created_at }}</p>
   </div>
 
  
@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($item->cart_items as $data)
+      @foreach ($item->transactiondetail as $data)
         <tr>
           <td>{{ $data->product->productname }}</td>
           <td>{{ $data->quantity }}</td>
